@@ -1,0 +1,3 @@
+include *.txt *.py *.ini *.cfg *.rst
+exclude *.pyc
+recursive-include user_fields/ *
