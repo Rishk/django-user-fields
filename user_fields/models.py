@@ -52,6 +52,10 @@ class ExtraField(models.Model):
 
         return tuple(choices_list)
 
+    def get_type(self):
+
+        return dict(extra_field_types)[self.field_type]
+
     def __str__(self):
 
         return '{} ({})'.format(self.label, self.name)
