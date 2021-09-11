@@ -22,9 +22,9 @@ class ExtraField(models.Model):
     name = models.CharField(validators=[slug_regex], max_length=50, unique=True,
                             help_text='Unique identifier for this field. Formatted like a slug.')
 
-    label = models.CharField(max_length=35)
+    label = models.CharField(max_length=100)
 
-    help_text = models.CharField(max_length=75, blank=True, null=True, help_text='Optional.')
+    help_text = models.TextField(blank=True, null=True, help_text='Optional.')
 
     required = models.BooleanField()
 
