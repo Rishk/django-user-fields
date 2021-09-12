@@ -1,5 +1,14 @@
 django-user-fields
 ==================
+
+.. image:: https://pepy.tech/badge/django-user-fields
+	:target: https://pepy.tech/project/django-user-fields
+	:alt: Total downloads
+
+.. image:: https://badge.fury.io/py/django-user-fields.svg
+	:target: https://pypi.org/project/django-user-fields/
+	:alt: PyPI version
+
 A Django application that makes user creation of form fields simple, handling everything from form generation to data storage and retrieval.
 
 This was initially built for `MUN Manager <https://modelun.co>`_ to allow conferences to collect whatever information they wanted to during all parts of the registration process. django-user-fields allows conferences to easily add their own extra fields to various forms using a simple admin interface creating a tailored experience.
