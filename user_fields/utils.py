@@ -3,8 +3,8 @@ import uuid
 
 
 def generate_field_name(field_class, field_label, max_tries=10000, use_uuid=True):
-    """ Function that takes the label of a field and tries to generate a unique name for it.
-    The 'max_tries' parameter denotes the maximum number of times the function will try to find unique name. """
+    """Function that takes the label of a field and tries to generate a unique name for it.
+    The 'max_tries' parameter denotes the maximum number of times the function will try to find unique name."""
 
     def field_name_in_use(_field_class, _name):
         return _field_class.objects.filter(name=_name).count() > 0
@@ -22,7 +22,7 @@ def generate_field_name(field_class, field_label, max_tries=10000, use_uuid=True
         field_name = str(uuid.uuid4())
         while field_name_in_use(field_class, field_name):
             field_name = str(uuid.uuid4())
-        
+
         return field_name
 
     return None

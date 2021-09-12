@@ -12,13 +12,13 @@ def is_json(storage_field):
 
 
 class UserFieldMixin:
-    """ Mixin that adds the necessary data retrieval and storage
-    functions to an object storing data from extra fields. """
+    """Mixin that adds the necessary data retrieval and storage
+    functions to an object storing data from extra fields."""
 
-    FIELD_STRING = getattr(settings,'USER_FIELDS_ATTR_NAME', 'extra_data')
+    FIELD_STRING = getattr(settings, "USER_FIELDS_ATTR_NAME", "extra_data")
 
     def retrieve_extra_data(self, extra_field, formatted=False):
-        """ Function that returns the data stored for a given field. """
+        """Function that returns the data stored for a given field."""
 
         storage_field = getattr(self, self.FIELD_STRING)
 
@@ -31,14 +31,14 @@ class UserFieldMixin:
 
         if key not in extra_data:
             return None
-        
-        if formatted and extra_data[key]['type'] == 'choice':
-            return extra_data[key]['str']
+
+        if formatted and extra_data[key]["type"] == "choice":
+            return extra_data[key]["str"]
         else:
-            return extra_data[key]['data']
+            return extra_data[key]["data"]
 
     def save_extra_data(self, extra_field, value):
-        """ Function that saves the data supplied for a given field to the object. """
+        """Function that saves the data supplied for a given field to the object."""
 
         key = extra_field.name
         extra_data = {}
@@ -50,26 +50,26 @@ class UserFieldMixin:
 
         extra_data[key] = {}
 
-        if extra_field.field_type == 'choice':
+        if extra_field.field_type == "choice":
 
-            extra_data[key]['str'] = dict(extra_field.get_choices_tuple())[value]
+            extra_data[key]["str"] = dict(extra_field.get_choices_tuple())[value]
 
-        extra_data[key]['data'] = value
+        extra_data[key]["data"] = value
 
-        extra_data[key]['type'] = extra_field.field_type
+        extra_data[key]["type"] = extra_field.field_type
 
         setattr(self, self.FIELD_STRING, json.dumps(extra_data))
 
         self.save()
 
     def save_extra_form_data(self, form):
-        """ Function that saves all of the extra field data in a form to the object. """
+        """Function that saves all of the extra field data in a form to the object."""
 
         for extra_field in form.extra_fields:
             self.save_extra_data(extra_field, form.cleaned_data[extra_field.name])
 
     def delete_extra_data(self, extra_field):
-        """ Function that deletes all of the data associated with a given field. """
+        """Function that deletes all of the data associated with a given field."""
 
         key = extra_field.name
         storage_field = getattr(self, self.FIELD_STRING)
